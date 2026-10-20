@@ -56,12 +56,12 @@ class FavouritesFragment : Fragment() {
             adapter = coinAdapter
         }
 
-        viewModel.favCoins.observe(viewLifecycleOwner, { result ->
+        viewModel.favCoins.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                     if (result.data?.isNotEmpty() == true) {
                         coinAdapter.submitList(result.data)
-                        result.data?.let {
+                        result.data.let {
                             binding.noFavesTxt.visibility = View.GONE
                             savedCoins = it
                             val coinString = Gson().toJson(it.random())
@@ -78,10 +78,10 @@ class FavouritesFragment : Fragment() {
                 }
             }
 
-        })
+        }
 
 
-        viewModel.remoteCoins.observe(viewLifecycleOwner, { coins ->
+        viewModel.remoteCoins.observe(viewLifecycleOwner) { coins ->
             if (savedCoins?.isNotEmpty() == true) {
                 coins.forEach {
                     val saved = savedCoins?.find { s ->
@@ -113,7 +113,7 @@ class FavouritesFragment : Fragment() {
                 }
             }
 
-        })
+        }
     }
 
     private fun navigateToDetail(id: String) {

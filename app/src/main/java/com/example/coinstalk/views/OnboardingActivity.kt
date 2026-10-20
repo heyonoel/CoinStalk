@@ -21,7 +21,7 @@ class OnboardingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        if (!helper.userAlias.isNullOrEmpty()) {
+        if (helper.userAlias.isNotEmpty()) {
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)

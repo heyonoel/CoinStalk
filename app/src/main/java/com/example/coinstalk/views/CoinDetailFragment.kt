@@ -63,7 +63,7 @@ class CoinDetailFragment : Fragment() {
         }
 
 
-        viewModel.singleCoin.observe(viewLifecycleOwner, { result ->
+        viewModel.singleCoin.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                     result.data?.let { coin ->
@@ -94,9 +94,9 @@ class CoinDetailFragment : Fragment() {
 
                 }
             }
-        })
+        }
 
-        viewModel.favResponse.observe(viewLifecycleOwner, { response ->
+        viewModel.favResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Result.Success -> {
                     response.data?.let { msg ->
@@ -114,7 +114,7 @@ class CoinDetailFragment : Fragment() {
                 }
             }
 
-        })
+        }
     }
 
 

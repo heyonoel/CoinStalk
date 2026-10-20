@@ -75,7 +75,7 @@ class StalkViewModel @Inject constructor(
         }
     }
 
-     fun getFavouriteCoins() {
+    fun getFavouriteCoins() {
         viewModelScope.launch(dispatcher) {
             fetchFavCoins.execute().onStart {
                 _favCoins.postValue(Result.Loading)
@@ -89,7 +89,7 @@ class StalkViewModel @Inject constructor(
         }
     }
 
-     fun getSingleCoin(id : String) {
+    fun getSingleCoin(id: String) {
         viewModelScope.launch(dispatcher) {
             getCoinById.execute(id).onStart {
                 _singleCoin.postValue(Result.Loading)
@@ -103,7 +103,7 @@ class StalkViewModel @Inject constructor(
         }
     }
 
-    fun toggleFavouriteCoin(id : String, fav : Boolean) {
+    fun toggleFavouriteCoin(id: String, fav: Boolean) {
         viewModelScope.launch(dispatcher) {
             updateCoin.execute(id, fav).onStart {
                 _favResponse.postValue(Result.Loading)
@@ -112,9 +112,9 @@ class StalkViewModel @Inject constructor(
                     _favResponse.postValue(Result.Error(it))
                 }
                 .collect {
-                    if (fav){
+                    if (fav) {
                         _favResponse.postValue(Result.Success("Coin Added to favourites!"))
-                    }else{
+                    } else {
                         _favResponse.postValue(Result.Success("Coin removed from favourites!"))
                     }
 
@@ -122,7 +122,7 @@ class StalkViewModel @Inject constructor(
         }
     }
 
-     fun saveCoins(coins: List<StalkCoin>) {
+    fun saveCoins(coins: List<StalkCoin>) {
         viewModelScope.launch(dispatcher) {
             saveCoins.execute(mapper.mapToFirst(coins)).collect { }
         }

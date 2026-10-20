@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
             adapter = gainersAdapter
         }
 
-        viewModel.coins.observe(viewLifecycleOwner, { result ->
+        viewModel.coins.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                     binding.coinsProgress.visibility = View.GONE
@@ -90,9 +90,9 @@ class HomeFragment : Fragment() {
             }
 
 
-        })
+        }
 
-        viewModel.remoteCoins.observe(viewLifecycleOwner, { coins ->
+        viewModel.remoteCoins.observe(viewLifecycleOwner) { coins ->
             if (savedCoins?.isNotEmpty() == true) {
                 coins.forEach {
                     val saved = savedCoins?.find { s ->
@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
                 viewModel.saveCoins(coins)
             }
 
-        })
+        }
     }
 
     private fun navigateToDetail(id: String) {

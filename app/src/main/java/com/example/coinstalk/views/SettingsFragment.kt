@@ -35,7 +35,7 @@ class SettingsFragment : Fragment() {
         if (helper.theme == ThemeHelper.DARK_MODE) {
             binding.darkModeSwitch.isChecked = true
         }
-        binding.darkModeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 helper.theme = ThemeHelper.DARK_MODE
                 ThemeHelper.applyTheme(ThemeHelper.DARK_MODE)
